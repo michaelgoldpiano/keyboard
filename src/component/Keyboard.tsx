@@ -21,27 +21,39 @@ export default function Keyboard(): JSX.Element {
      * @returns {any} Properties for all Keys.
      */
     function generateKeyProps() {
-        const props = []
-        const numKeys = 88;
+        const props = [];
+        const numKeys: number = 88;
 
-        const whiteWidth: number = 24;
-        const whiteHeight: number = 153;
-        const blackWidth: number = 14;
-        const blackHeight: number = 102;
-        const octaveWidth: number = whiteWidth * 7;
+        const whitePixelWidth: number = 24;
+        const whitePixelHeight: number = 153;
+        const blackPixelWidth: number = 14;
+        const blackPixelHeight: number = 102;
+        const octavePixelWidth: number = whitePixelWidth * 7;
+        const octavePixelHeight: number = whitePixelHeight;
+
+        const pixelPercentWidth: number = 100 / octavePixelWidth / ((numKeys + 1) / 12);
+        const pixelPercentHeight: number = 100 / octavePixelHeight;
+
+        const whitePercentWidth: number = pixelPercentWidth * whitePixelWidth;
+        const whitePercentHeight: number = pixelPercentHeight * whitePixelHeight;
+        const blackPercentWidth: number = pixelPercentWidth * blackPixelWidth;
+        const blackPercentHeight: number = pixelPercentHeight * blackPixelHeight;
+        const blackPercentWidthOffset: number = pixelPercentWidth * 7;
+        const octavePercentWidth: number = whitePercentWidth * 7;
+
         const notes = [
-            (n: number) => {return {name: KeyName.A,       color: KeyColor.WHITE, size: {left: (n * octaveWidth),                         top: 0, width: whiteWidth, height: whiteHeight, zIndex: 0}}},
-            (n: number) => {return {name: KeyName.A_SHARP, color: KeyColor.BLACK, size: {left: (n * octaveWidth) + (blackWidth * 1) + 7,  top: 0, width: blackWidth, height: blackHeight, zIndex: 1}}},
-            (n: number) => {return {name: KeyName.B,       color: KeyColor.WHITE, size: {left: (n * octaveWidth) + (whiteWidth * 1),      top: 0, width: whiteWidth, height: whiteHeight, zIndex: 0}}},
-            (n: number) => {return {name: KeyName.C,       color: KeyColor.WHITE, size: {left: (n * octaveWidth) + (whiteWidth * 2),      top: 0, width: whiteWidth, height: whiteHeight, zIndex: 0}}},
-            (n: number) => {return {name: KeyName.C_SHARP, color: KeyColor.BLACK, size: {left: (n * octaveWidth) + (blackWidth * 4) + 7,  top: 0, width: blackWidth, height: blackHeight, zIndex: 1}}},
-            (n: number) => {return {name: KeyName.D,       color: KeyColor.WHITE, size: {left: (n * octaveWidth) + (whiteWidth * 3),      top: 0, width: whiteWidth, height: whiteHeight, zIndex: 0}}},
-            (n: number) => {return {name: KeyName.D_SHARP, color: KeyColor.BLACK, size: {left: (n * octaveWidth) + (blackWidth * 6) + 7,  top: 0, width: blackWidth, height: blackHeight, zIndex: 1}}},
-            (n: number) => {return {name: KeyName.E,       color: KeyColor.WHITE, size: {left: (n * octaveWidth) + (whiteWidth * 4),      top: 0, width: whiteWidth, height: whiteHeight, zIndex: 0}}},
-            (n: number) => {return {name: KeyName.F,       color: KeyColor.WHITE, size: {left: (n * octaveWidth) + (whiteWidth * 5),      top: 0, width: whiteWidth, height: whiteHeight, zIndex: 0}}},
-            (n: number) => {return {name: KeyName.F_SHARP, color: KeyColor.BLACK, size: {left: (n * octaveWidth) + (blackWidth * 9) + 7,  top: 0, width: blackWidth, height: blackHeight, zIndex: 1}}},
-            (n: number) => {return {name: KeyName.G,       color: KeyColor.WHITE, size: {left: (n * octaveWidth) + (whiteWidth * 6),      top: 0, width: whiteWidth, height: whiteHeight, zIndex: 0}}},
-            (n: number) => {return {name: KeyName.G_SHARP, color: KeyColor.BLACK, size: {left: (n * octaveWidth) + (blackWidth * 11) + 7, top: 0, width: blackWidth, height: blackHeight, zIndex: 1}}},
+            (register: number) => {return {name: KeyName.A,       color: KeyColor.WHITE, size: {left: (register * octavePercentWidth) + (whitePercentWidth * 0)  + "%",                           top: "0%", width: whitePercentWidth + "%", height: whitePercentHeight + "%", zIndex: 0}}},
+            (register: number) => {return {name: KeyName.A_SHARP, color: KeyColor.BLACK, size: {left: (register * octavePercentWidth) + (blackPercentWidth * 1)  + blackPercentWidthOffset + "%", top: "0%", width: blackPercentWidth + "%", height: blackPercentHeight + "%", zIndex: 1}}},
+            (register: number) => {return {name: KeyName.B,       color: KeyColor.WHITE, size: {left: (register * octavePercentWidth) + (whitePercentWidth * 1)  + "%",                           top: "0%", width: whitePercentWidth + "%", height: whitePercentHeight + "%", zIndex: 0}}},
+            (register: number) => {return {name: KeyName.C,       color: KeyColor.WHITE, size: {left: (register * octavePercentWidth) + (whitePercentWidth * 2)  + "%",                           top: "0%", width: whitePercentWidth + "%", height: whitePercentHeight + "%", zIndex: 0}}},
+            (register: number) => {return {name: KeyName.C_SHARP, color: KeyColor.BLACK, size: {left: (register * octavePercentWidth) + (blackPercentWidth * 4)  + blackPercentWidthOffset + "%", top: "0%", width: blackPercentWidth + "%", height: blackPercentHeight + "%", zIndex: 1}}},
+            (register: number) => {return {name: KeyName.D,       color: KeyColor.WHITE, size: {left: (register * octavePercentWidth) + (whitePercentWidth * 3)  + "%",                           top: "0%", width: whitePercentWidth + "%", height: whitePercentHeight + "%", zIndex: 0}}},
+            (register: number) => {return {name: KeyName.D_SHARP, color: KeyColor.BLACK, size: {left: (register * octavePercentWidth) + (blackPercentWidth * 6)  + blackPercentWidthOffset + "%", top: "0%", width: blackPercentWidth + "%", height: blackPercentHeight + "%", zIndex: 1}}},
+            (register: number) => {return {name: KeyName.E,       color: KeyColor.WHITE, size: {left: (register * octavePercentWidth) + (whitePercentWidth * 4)  + "%",                           top: "0%", width: whitePercentWidth + "%", height: whitePercentHeight + "%", zIndex: 0}}},
+            (register: number) => {return {name: KeyName.F,       color: KeyColor.WHITE, size: {left: (register * octavePercentWidth) + (whitePercentWidth * 5)  + "%",                           top: "0%", width: whitePercentWidth + "%", height: whitePercentHeight + "%", zIndex: 0}}},
+            (register: number) => {return {name: KeyName.F_SHARP, color: KeyColor.BLACK, size: {left: (register * octavePercentWidth) + (blackPercentWidth * 9)  + blackPercentWidthOffset + "%", top: "0%", width: blackPercentWidth + "%", height: blackPercentHeight + "%", zIndex: 1}}},
+            (register: number) => {return {name: KeyName.G,       color: KeyColor.WHITE, size: {left: (register * octavePercentWidth) + (whitePercentWidth * 6)  + "%",                           top: "0%", width: whitePercentWidth + "%", height: whitePercentHeight + "%", zIndex: 0}}},
+            (register: number) => {return {name: KeyName.G_SHARP, color: KeyColor.BLACK, size: {left: (register * octavePercentWidth) + (blackPercentWidth * 11) + blackPercentWidthOffset + "%", top: "0%", width: blackPercentWidth + "%", height: blackPercentHeight + "%", zIndex: 1}}},
         ];
 
         for (let i = 0; i < numKeys; i++) {
@@ -99,8 +111,10 @@ export default function Keyboard(): JSX.Element {
             onMouseDown={onMouseDown}
             onMouseUp={onMouseUp}
             style={{
-                width: totalWidth,
-                height: totalHeight,
+                aspectRatio: totalWidth / totalHeight,
+                // width: totalWidth,
+                // height: totalHeight,
+                position: "relative",
             }}
         >
             {keyProps.current.map((prop) => (

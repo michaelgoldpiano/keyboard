@@ -1,5 +1,5 @@
 import React from "react";
-import Keyboard from "./Keyboard";
+import Keyboard from "./component/Keyboard";
 
 function App(): JSX.Element {
     return (
