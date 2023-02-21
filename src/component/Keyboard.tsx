@@ -123,3 +123,26 @@ export default function Keyboard(): JSX.Element {
         </div>
     );
 }
+
+
+
+
+/* use Tone and sampling for real piano sounds */
+// var piano = new Tone.Sampler({
+            
+// "C4":"samples/c4.mp3"
+// });
+// piano.toMaster();
+// Tone.Buffer.onload = function(){
+//     document.getElementById('loading').style.display = 'none';
+//         keyboard.keyDown = function(note, freq) {
+        
+//         var midi = 69 + 12*Math.log(freq/440)/Math.log(2)
+
+//         piano.triggerAttack("C4");
+        
+//         // Detune each piano sample 
+//         piano.pitch = tune.note(midi-tune.scale.length)-tune.key; 
+
+//     };
+// }

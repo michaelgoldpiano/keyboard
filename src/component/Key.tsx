@@ -29,6 +29,8 @@ export enum KeyColor {
     WHITE = "#FFF",
     BLACK = "#000",
     PEARL = "#CCCCCC",
+    LIGHT_BLUE = "#b8cff5",
+    DARK_BLUE = "#3e86de",
     PINK = "#FF9999",
     RED = "#FF6666",
 };
@@ -102,7 +104,7 @@ export default function Key({name, frequency, color, size, ac, isMouseDown}: Pro
                 onMouseOut={onMouseOut}
                 style={{
                     ...size,
-                    backgroundColor: KeyColor.RED,
+                    backgroundColor: KeyColor.DARK_BLUE,
                     border: "1px solid " + KeyColor.BLACK,
                     borderRadius: "3px",
                     position: "absolute",
@@ -114,7 +116,7 @@ export default function Key({name, frequency, color, size, ac, isMouseDown}: Pro
                 onMouseOut={onMouseOut}
                 style={{
                     ...size,
-                    backgroundColor: KeyColor.PINK,
+                    backgroundColor: KeyColor.LIGHT_BLUE,
                     border: "1px solid " + KeyColor.BLACK,
                     borderRadius: "3px",
                     position: "absolute",
